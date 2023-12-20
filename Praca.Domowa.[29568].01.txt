@@ -1,0 +1,106 @@
+
+Imię: [Adrian]
+Nazwisko: [Kita]
+Numer albumu: [29568]
+
+# --------------------------------------------------------
+# Zadanie.01 
+#
+#	Wygeneruj wektor liczb losowych x1. 
+#   Dziedzina losowania to liczby całkowite od 1 do 100.
+#   Wektor posiada 100 elementów. 
+#   Elementy wektora nie mogą się powtarzać.
+#	Podaj sumę wartości elementów wektora. 
+#	Wskazówka: skorzystaj z funkcji 'sample'.
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+ 
+ x1 <- sample(1:100, 100, replace=F)
+ print(sum(x1))
+
+
+# --------------------------------------------------------
+# Zadanie.02
+#
+#	Wygeneruj wektor liczb losowych x2. 
+#   Dziedzina losowania to liczby całkowite {1,2,3}.
+#   Wektor posiada 50 elementów. 
+#   Elementy wektora MOGĄ się powtarzać.
+#	Policz liczbę wystąpień każdej liczby w wektorze. 
+#	Wskazówka: skorzystaj z funkcji 'table'.
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+x2 <- sample(c(1, 2, 3), 50, replace = T)
+liczba_wystapien <- table(x2)
+print(liczba_wystapien)
+
+
+# --------------------------------------------------------
+# Zadanie.03
+#
+#	Stwórz losowe słowo ośmioliterowe. 
+#   Dziedzina losowania to wektor 'letters'.
+#   Elementy wektora nie mogą się powtarzać.
+#	Wskazówka: skorzystaj z funkcji 'paste', aby połaczyć elementy wektora w słowo. 
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+slowo <- paste(sample(letters, 8, replace = F), collapse = "")
+print(slowo)
+
+
+# --------------------------------------------------------
+# Zadanie.04
+#
+#	Stwórz wektor x4 kolejnych liczb całkowitych od 1 do 10. 
+#   Każdy z elemntów wektora podstaw jako promień r i wylicz dla niego
+#	 - obwód koła
+#	 - pole koła
+#	 - powierzchnię kuli (sferę)
+#	 - objętość kuli
+#	Wszystkie wyniki zgromadź w macierzy o 10 wierszach i 5 kolumnach. 
+#	wyświetl macierz wyników z dokładnością do dwóch miejsc dziesiętnych.
+#
+#      [,1]  [,2]   [,3]    [,4]    [,5]
+# [1,]    1  6.28   3.14   12.57    4.19
+# [2,]    2 12.57  12.57   50.27   33.51
+# [3,]    3 18.85  28.27  113.10  113.10
+# [4,]    4 25.13  50.27  201.06  268.08
+# [5,]    5 31.42  78.54  314.16  523.60
+# [6,]    6 37.70 113.10  452.39  904.78
+# [7,]    7 43.98 153.94  615.75 1436.76
+# [8,]    8 50.27 201.06  804.25 2144.66
+# [9,]    9 56.55 254.47 1017.88 3053.63
+# [10,]   10 62.83 314.16 1256.64 4188.79
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+x4 <- c(1:10)
+obwod_kola <- 2 * pi * x4
+pole_kola <- pi * x4^2
+powierzchnia_kuli <- 4 * pi * x4^2
+objetosc_kuli <- 4/3 * pi * x4^3
+Macierz_wyniki <- matrix(c(x4, obwod_kola, pole_kola, powierzchnia_kuli, objetosc_kuli), nrow = 10, ncol = 5)
+print(round(Macierz_wyniki, 2))
+
+
+# --------------------------------------------------------
+# Zadanie.05
+# 
+# Policz ile jest wspólnych wielokrotności liczb 2 i 3
+# w zbiorze liczb całkowitych od 1 do 1500.  
+# Wskazówka: skorzystaj z funkcji 'intersect'.
+# 
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+zbior <- c(1:1500)
+wielokrotnosci_2 <- zbior[zbior %% 2 == 0]
+wielokrotnosci_3 <- zbior[zbior %% 3 == 0]
+wielokrotnosci_wspolne <- intersect(wielokrotnosci_2, wielokrotnosci_3)
+print(length(wielokrotnosci_wspolne))

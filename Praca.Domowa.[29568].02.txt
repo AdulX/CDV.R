@@ -1,0 +1,298 @@
+Imię: [Adrian]
+Nazwisko: [Kita]
+Numer albumu: [29568]
+
+# --------------------------------------------------------
+# Zadanie.06 
+#
+#	Firma sprzedaje trzy kategorie produktów A, B oraz C. Każdy z nich
+# jest obłożony inną stawką podatku VAT (odpowiednio: 8%, 10% i 20%). Pobierz
+# kategorię i cenę. Użyj wyrażenia warunkowego, aby wyliczyć cenę z podatkiem.
+# Zakomunikuj wynik do użytkownika. {użyj if else}
+#
+# --------------------------------------------------------
+
+kategoria <- readline(prompt="Podaj kategorię produktu (A, B lub C): ")
+cena <- as.numeric(readline(prompt="Podaj cenę produktu: "))
+
+
+if (kategoria == 'A') {
+  cena_z_podatkiem <- cena * 1.08  # Stawka VAT 8%
+} else if (kategoria == 'B') {
+  cena_z_podatkiem <- cena * 1.10  # Stawka VAT 10%
+} else if (kategoria == 'C') {
+  cena_z_podatkiem <- cena * 1.20  # Stawka VAT 20%
+} else {
+  print("Podano nieprawidłową kategorię produktu.\n")
+}
+
+
+if (kategoria == 'A') {
+  print(paste("Obowiązuje stawka VAT 8%. Cena wraz z podatkiem wynosi ", cena_z_podatkiem))
+} else if (kategoria == 'B'){
+  print(paste("Obowiązuje stawka VAT 10%. Cena wraz z podatkiem wynosi ", cena_z_podatkiem))
+} else if (kategoria == 'C'){
+  print(paste("Obowiązuje stawka VAT 20%. Cena wraz z podatkiem wynosi ", cena_z_podatkiem))
+}
+      
+
+
+##> Obowiązuje stawka VAT 8%. Cena wraz z podatkiem wynosi 54.
+##> Obowiązuje stawka VAT 8%. Cena wraz z podatkiem wynosi 55.
+##> Obowiązuje stawka VAT 8%. Cena wraz z podatkiem wynosi 60.
+
+# --------------------------------------------------------
+# Zadanie.07
+#
+#	Oblicz iloczyn elementów dowolnego wektora x za pomocą pętli while oraz repeat 
+# {użyj while, repeat}
+# 
+#	x <- 1:5
+#	
+#
+# --------------------------------------------------------
+x <- 1:5
+
+#Za pomocą pętli while
+
+iloczyn1 <- 1
+i <- 1
+
+while (i <= length(x)) {
+  iloczyn1 <- iloczyn1 * x[i]
+  i <- i + 1
+}
+
+print(paste("Iloczyn elementów wektora za pomocą pętli while: ", iloczyn1))
+
+#Za pomocą pętli repeat
+
+iloczyn2 <- 1
+a <- 1
+
+repeat {
+  iloczyn2 <- iloczyn2 * x[a]
+  a <- a + 1
+  
+  if (a > length(x)) {
+    break
+  }
+}
+
+print(paste("Iloczyn elementów wektora x za pomocą pętli repeat: ", iloczyn2))
+
+  
+  
+# --------------------------------------------------------
+# Zadanie.08
+#
+# Użyj zbioru airquality. Odpowiedz na pytania: 		
+# a) ile jest przypadków w zbiorze
+# b) ile jest przypadków z brakami danych
+# c) ile, i jakich, jest zmiennych w zbiorze
+# d) ile, i jakich, jest zmiennych z brakami danych
+# 
+# Sformułuj pełne odpowiedzi tekstowe. Wklej kod obliczeń.
+#
+# --------------------------------------------------------
+
+data(airquality)
+
+liczba_przypadkow <- nrow(airquality)
+print(paste("Ilość przypadków w zbiorze airquality:", liczba_przypadkow))
+
+liczba_brakow <- sum(is.na(airquality))
+print(paste("Ilość przypadków z brakami danych w zbiorze airquality:", liczba_brakow))
+
+liczba_zmiennych <- ncol(airquality)
+nazwy_zmiennych <- names(airquality)
+print(paste("Ilość zmiennych w zbiorze airquality:", liczba_zmiennych, ". Są to ", paste(nazwy_zmiennych, collapse = ", ")))
+
+
+liczba_zmiennych_braki <- sum(colSums(is.na(airquality)) > 0)
+nazwy_zmiennych_braki <- names(airquality)[colSums(is.na(airquality)) > 0]
+print(paste("Ilość zmiennych z brakami danych w zbiorze airquality:", liczba_zmiennych_braki, ". Są to ", paste(nazwy_zmiennych_braki, collapse = ", ")))
+
+
+
+  
+# --------------------------------------------------------
+# Zadanie.09
+#
+#	Ciąg Fibonacciego to ciąg liczb naturalnych, taki że każdy kolejny
+# wyraz stanowi sumę dwóch poprzednich. 
+#	https://pl.wikipedia.org/wiki/Ci%C4%85g_Fibonacciego
+#	
+#	Użyj pętli for, aby stworzyć 20 pierwszych wyrazów ciągu.
+#	Podaj ich sumę. {użyj pętli for}
+#	
+# --------------------------------------------------------  
+
+fibonacci <- numeric(20)
+fibonacci[1] <- 0
+fibonacci[2] <- 1
+
+for (i in 3:20) {
+  fibonacci[i] <- fibonacci[i - 1] + fibonacci[i - 2]
+}
+
+suma <- sum(fibonacci)
+print(paste("Suma pierwszych 20 wyrazów ciągu Fibonacciego:", suma))
+
+
+
+# --------------------------------------------------------
+# Zadanie.10
+# 
+# Wygeneruj 100-elementowy wektor z rozkładu Poisonna z parametrem 
+# lambda=5 zapomocą komendy {rpois} i przypisz go do zmiennej x.
+# Policz dla tego wektora: średnią, sumę, odchylenie standardowe. 
+# Zwizualizuj wektor za pomocą histogramu oraz wykresu pudełkowego (boxplot)
+# (słupki w kolorze niebieskim, tytuł wykresu "Rozkład Poissona"). 
+# 
+# --------------------------------------------------------  
+lambda <- 5
+x <- rpois(100, lambda)
+
+
+srednia <- mean(x)
+suma <- sum(x)
+odchylenie_standardowe <- sd(x)
+
+
+print(paste("Średnia:", srednia))
+print(paste("Suma:", suma))
+print(paste("Odchylenie standardowe:", odchylenie_standardowe))
+
+
+hist(x, col = "blue", main = "Rozkład Poissona")
+boxplot(x, col = "blue", main = "Rozkład Poissona")
+
+
+
+# --------------------------------------------------------
+# Zadanie.11
+  
+# Wczytaj dane ze zbioru "countries of the world.csv" 
+# Zapoznaj si z danymi korzystając np. z funkcji names(), summary(), str(), 
+# dim(), itd., obejrzysz też dane za pomocą funkcji View()
+# Zamień puste pola na wartości NA: data[data==""] <- NA
+# zmień nazwy kolumn, zgodnie z następującym wzorem:
+# Area_sq_mi -> Area
+# Pop_Density_per_sq_mi -> Pop_dens
+# GDPper_capita -> GDP
+# Usuń ze zbioru wszystkie zmienne poza: Country, Region, Population, Area, 
+# Pop_dens, GDP, Literacy, Birthrate, Deathrate.
+# Usuń spacje ze zmiennej Region (z przodu i z tyłu nazw - funkcja str_trim)
+#  
+# Dla ilu krajów występują braki danych w zmiennej Literacy? Użyj funkcji is.na i sum
+# Wyświetl wszystkie kategorie zmiennej Region. Jaka jest dominanta? (RVAideMemoire::mod(?))
+# Sprawdź udział procentowy poszczególnych kategorii.
+# Jaka jest średnia i mediana zmiennych Population, Area i GDP? 
+# Stwórz histogram oraz wykres pudełkowy dla zmiennych GDP oraz Literacy. 
+# Odpowiednio podpisz osie histogramu (uwzględniając też jednostki)
+# Wyświetl kwartyle dla funkcji GDP. Teraz stwórz nową zmienną - będzie to zmienna 
+# kategoryczna oparta na zmiennej GDP. Nowa zmienna:
+# - powinna się nazywać "GDP_binned"
+# - będzie przyjmować cztery wartości (kategorie):
+# - pierwsza kategoria ma zawierać wartości od minimum do pierwszego kwartyla. Nazwij ją "Very_poor"
+# - druga kategoria ma zawierać wartości od pierwszego kwartyla do mediany. Nazwij ją "Poor"
+# - trzecia kategoria ma zawierać wartości od mediany do trzeciego. Nazwij ją "Medium"
+# - czwarta kategoria ma zawierać wartości od mediany do trzeciego. Nazwij ją "Rich"
+# - (użyj funkcji ifelse albo case_when)  
+# Stwórz nową zmienną logiczną, która przyjmuje wartość "True", kiedy wartość 
+# zmiennej "Birthrate" jest większa lub równa od wartości zmiennej "Deathrate",
+# a wartość "False" w przeciwnym przypadku. Wartość "True" w nowej zmiennej
+# oznacza "najprościej ujmując", że w roku badania w danym kraju więcej osób się
+# urodziło niż umarło. Stwórz wykres słupkowy dla nowo powstałej zmiennej, 
+#  pokazując częstość występowania pierwszej i drugiej kategorii.
+install.packages("stringr")
+install.packages("RVAideMemoire")
+library(stringr)
+library(RVAideMemoire)
+data <- read.csv("https://raw.githubusercontent.com/RPuakowski/Teaching/main/countries%20of%20the%20world.csv", na.strings = "")
+
+names(data)
+summary(data)
+str(data)
+dim(data)
+View(data)
+
+data[data == ""] <- NA
+
+names(data)[4] <- "Area"
+names(data)[5] <- "Pop_dens"
+names(data)[9] <- "GDP"
+names(data)[10] <- "Literacy"
+
+data <- subset(data, select = -Coastline..coast.area.ratio.)
+data <- subset(data, select = -Net.migration)
+data <- subset(data, select = -Infant.mortality..per.1000.births.)
+data <- subset(data, select = -Phones..per.1000.)
+data <- subset(data, select = -Arable....)
+data <- subset(data, select = -Crops....)
+data <- subset(data, select = -Other....)
+data <- subset(data, select = -Climate)
+data <- subset(data, select = -Agriculture)
+data <- subset(data, select = -Industry)
+data <- subset(data, select = -Service)
+data$Region <- str_trim(data$Region)
+
+
+braki_literacy <- sum(is.na(data$Literacy))
+print(paste("Liczba krajów z brakami danych w zmiennej Literacy:", braki_literacy))
+
+
+unique_regions <- unique(data$Region)
+print(paste("Kategorie zmiennej Region:", paste(unique_regions, collapse = ", ")))
+
+
+dominanta_region <- RVAideMemoire::mod(data$Region)
+print(paste("Dominanta zmiennej Region:", dominanta_region))
+
+
+udzial_procentowy <- prop.table(table(data$Region)) * 100
+print("Udział procentowy kategorii w zmiennej Region:\n")
+print(udzial_procentowy)
+
+
+srednia_population <- mean(data$Population, na.rm = TRUE)
+mediana_population <- median(data$Population, na.rm = TRUE)
+
+srednia_area <- mean(data$Area, na.rm = TRUE)
+mediana_area <- median(data$Area, na.rm = TRUE)
+
+srednia_gdp <- mean(data$GDP, na.rm = TRUE)
+mediana_gdp <- median(data$GDP, na.rm = TRUE)
+
+cat("Średnia Population:", srednia_population, "\n")
+cat("Mediana Population:", mediana_population, "\n")
+cat("Średnia Area:", srednia_area, "\n")
+cat("Mediana Area:", mediana_area, "\n")
+cat("Średnia GDP:", srednia_gdp, "\n")
+cat("Mediana GDP:", mediana_gdp, "\n")
+
+
+hist(data$GDP, main = "Histogram GDP", xlab = "GDP (billion USD)", col = "blue")
+boxplot(data$GDP, main = "Boxplot GDP", ylab = "GDP (billion USD)", col = "blue")
+
+data$Literacy <- as.numeric(gsub(",", ".", data$Literacy))
+
+hist(data$Literacy, main = "Histogram Literacy", xlab = "Literacy Rate", col = "green")
+boxplot(data$Literacy, main = "Boxplot Literacy", ylab = "Literacy Rate", col = "green")
+
+
+kwartyle_gdp <- quantile(data$GDP, c(0.25, 0.5, 0.75), na.rm = TRUE)
+cat("Kwartyle dla GDP:", kwartyle_gdp, "\n")
+
+
+data$GDP_binned <- ifelse(data$GDP <= kwartyle_gdp[1], "Very_poor",
+                          ifelse(data$GDP <= kwartyle_gdp[2], "Poor",
+                                 ifelse(data$GDP <= kwartyle_gdp[3], "Medium", "Rich")))
+
+
+data$More_Births <- data$Birthrate >= data$Deathrate
+
+
+barplot(table(data$More_Births), col = c("red", "blue"), main = "Comparison of Births and Deaths", 
+        names.arg = c("More Deaths", "More Births"), ylab = "Frequency")
